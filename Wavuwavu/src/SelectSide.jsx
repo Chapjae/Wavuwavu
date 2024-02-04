@@ -1,24 +1,23 @@
 import { useState } from 'react';
+import Practice from './Practice';
 
 function SelectSide() {
-  const [chooseSide, setSide] = useState();
-  const [hoverSide, setHoverSide] = useState();
+  const [selectedSide, setSelectedSide] = useState(null);
+
+  const handleSelectSide = (side) => {
+    setSelectedSide(side);
+    console.log(side);
+  };
 
   return (
-    <>
-      <div
-        onMouseEnter={() => setHoverSide('test')}
-        onMouseLeave={() => hoverSide}
-        onClick={() => setSide('LeftSide')}>
-        Left Side
+    <div>
+      <div>
+        <p>Choose a side:</p>
+        <div onClick={() => handleSelectSide('Left')}>Left</div>
+        <div onClick={() => handleSelectSide('Right')}>Right</div>
       </div>
-      <div
-        onMouseEnter={() => setHoverSide('test2')}
-        onMouseLeave={() => hoverSide}
-        onClick={() => setSide('RightSide')}>
-        Right Side
-      </div>
-    </>
+      {selectedSide && <Practice selectedSide={selectedSide} />}
+    </div>
   );
 }
 
